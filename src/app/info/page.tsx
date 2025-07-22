@@ -91,7 +91,7 @@ export default function InfoPage() {
             I graduated from Indra Institute as a full-stack developer, where I built a solid foundation in both front-end and back-end technologies. I'm always curious about how things work and dedicated to delivering high-quality, reliable software.
 
             Outside of tech, I’m a highly active and competitive sports enthusiast.
-            
+
             <br /><br />
             <span className="text-purple-400 font-bold">Free time</span> <br />
             I enjoy basketball, volleyball, eSports, table tennis, and chess. I hold a 2nd-level basketball certification and a black belt in Taekwondo — I believe discipline and teamwork from sports carry over to everything I do.
@@ -102,43 +102,75 @@ export default function InfoPage() {
 
         {/* Contact Me Section */}
         <section className="bg-gray-900 p-8 rounded-lg shadow-lg">
+
           <h2 className="text-3xl font-bold mb-6 text-purple-400">Contact Me</h2>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-lg">
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="px-4 py-2 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="px-4 py-2 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-            <textarea
-              name="message"
-              placeholder="Your Message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              rows={5}
-              className="px-4 py-2 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
-            />
-            <button
-              type="submit"
-              disabled={status === 'sending'}
-              className="bg-purple-600 hover:bg-purple-700 rounded py-2 font-semibold transition"
+          <div className='flex justify-between'>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-lg w-md">
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="px-4 py-2 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="px-4 py-2 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              />
+              <textarea
+                name="message"
+                placeholder="Your Message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={5}
+                className="px-4 py-2 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+              />
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className="bg-purple-600 hover:bg-purple-700 rounded py-2 font-semibold transition"
+              >
+                {status === 'sending' ? 'Sending...' : 'Send Message'}
+              </button>
+            </form>
+            <MotionDiv
+              className=""
+              animate={{ rotateY: 360 }}
+              transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+              style={{ perspective: 800 }}
             >
-              {status === 'sending' ? 'Sending...' : 'Send Message'}
-            </button>
-          </form>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 100 100"
+                width={280}
+                height={280}
+                fill="none"
+                stroke="url(#gradient)"
+                strokeWidth="6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <defs>
+                  <linearGradient id="gradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stopColor="#7c3aed" />
+                    <stop offset="100%" stopColor="#ec4899" />
+                  </linearGradient>
+                </defs>
+                <path d="M50 10 L90 50 L50 90 L10 50 Z" />
+                <circle cx="50" cy="50" r="30" />
+              </svg>
+            </MotionDiv>
+          </div>
+
+
 
           {status === 'success' && (
             <p className="mt-4 text-green-400">Message sent successfully!</p>
@@ -147,6 +179,7 @@ export default function InfoPage() {
             <p className="mt-4 text-red-500">Oops! Something went wrong.</p>
           )}
         </section>
+
       </div>
     </MotionDiv>
   );
